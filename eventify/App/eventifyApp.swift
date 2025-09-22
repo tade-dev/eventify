@@ -11,7 +11,9 @@ import SwiftUI
 struct eventifyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                OnboardingView()
+            }
         }
     }
 }

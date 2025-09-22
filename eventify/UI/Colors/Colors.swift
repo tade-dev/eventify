@@ -16,7 +16,10 @@ struct Colors{
     let textBlack = Color("TextBlack")
     let lightGrey = Color("LightGrey")
     let neutral = Color("Neutral")
+    let neutral4 = Color("Neutral4")
     let white = Color("White")
     let offWhite = Color("OffWhite")
     let charcoalBlack = Color("CharcoalBlack")
+    let facebookBlue = Color("FacebookBlue")
+    let neutral6 = Color("Neutral6")
 }

@@ -14,18 +14,20 @@ struct PrimaryButton: View {
     var onPressed: ()-> ()
     var isDisabled: Bool = false
     var height: CGFloat = 50
-    var width: CGFloat = .infinity
+    var width: CGFloat? = nil
     var fontSize: CGFloat = 16
     var textColor: Color = .white
     
     var body: some View {
         Button(action: onPressed) {
             Text(text)
-                .frame(maxWidth: width)
-                .frame(height: height)
+                .font(.openSans(.medium, size: fontSize))
                 .foregroundColor(textColor)
+                .frame(maxWidth: width ?? .infinity)
+                .frame(height: height)
                 .background(color)
                 .cornerRadius(5)
         }
     }
 }
+
