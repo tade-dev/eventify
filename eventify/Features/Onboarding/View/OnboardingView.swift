@@ -14,29 +14,36 @@ struct OnboardingView: View {
     @State private var navigateToNext = false
     
     var body: some View {
-        ZStack {
-            _buildBackgroundImages(vm.currentIndex)
+        NavigationStack {
+            ZStack {
+                _buildBackgroundImages(vm.currentIndex)
+                    .ignoresSafeArea()
+                
+                LinearGradient(
+                    stops: [
+                        .init(color: .colors.textBlack.opacity(0.8), location: 0.58),
+                        .init(color: .colors.textBlack, location: 0.85),
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
                 .ignoresSafeArea()
-            
-            LinearGradient(
-                stops: [
-                    .init(color: .colors.textBlack.opacity(0.8), location: 0.58),
-                    .init(color: .colors.textBlack, location: 0.85),
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            VStack() {
- 
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 113, height: 32)
-                    .padding(.top, 90)
                 
-                Spacer()
-                
+                VStack() {
+     
+                    Image("Logo")
+                        .resizable()
+                        .frame(width: 113, height: 32)
+                        .padding(.top, 90)
+                    
+                    Spacer()
+                    
+                }
+                .padding(.horizontal, 25)
+                .padding(.bottom, 50)
+
+            }
+            .overlay(alignment: .bottom, content: {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(vm.onboardingViews[vm.currentIndex].title)
                         .font(.openSansBold(size: 32))
@@ -69,17 +76,15 @@ struct OnboardingView: View {
                     .offset(x: isAnimating ? 0 : -500, y: isAnimating ? 0 : 100)
                     .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
                     .navigationDestination(isPresented: $navigateToNext) {
-                        SignUpLoginView()
+                        AuthIntroView()
                     }
-                    
                 }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 50)
+            })
+            .onAppear() {
+                isAnimating = true
             }
-            .padding(.horizontal, 25)
-            .padding(.bottom, 50)
-            
-        }
-        .onAppear() {
-            isAnimating = true
         }
     }
     
