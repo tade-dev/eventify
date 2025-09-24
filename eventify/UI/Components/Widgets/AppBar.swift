@@ -9,15 +9,16 @@ import SwiftUI
 
 struct AppBar: View {
     
-    var onBack: () -> Void
+    var onBack: (() -> Void)? = nil
     var text: String
     var actions: [AnyView] = []
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         HStack {
             
             BackButton {
-                onBack()
+                onBack == nil ? dismiss() : onBack?()
             }
             
             Spacer()
@@ -36,12 +37,4 @@ struct AppBar: View {
             
         }
     }
-}
-
-#Preview {
-    AppBar(
-        onBack: {
-            
-        }, text: "Welcome Back"
-    )
 }

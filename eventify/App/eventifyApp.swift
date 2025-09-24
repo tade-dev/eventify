@@ -11,7 +11,11 @@ import SwiftUI
 struct eventifyApp: App {
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
+            ZStack {
+                Color.white
+                
+                OnboardingView()
+            }
         }
     }
 }

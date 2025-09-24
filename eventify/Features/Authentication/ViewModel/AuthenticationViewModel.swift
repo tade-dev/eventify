@@ -16,5 +16,7 @@ class AuthenticationViewModel: ObservableObject {
     @Published var fullName: String = ""
     @Published var rememberMe: Bool = false
     @Published var agreedToTerms: Bool = false
+    @Published var isLoginLoading = false
+    @Published var isSignUpLoading = false
     
 }

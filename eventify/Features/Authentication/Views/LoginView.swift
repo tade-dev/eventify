@@ -9,8 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject var viewModel = AuthenticationViewModel()
     @Binding var switchToLogin: Bool
+    @State var navigateToCreateAccount: Bool = false
+    @ObservedObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -50,9 +51,13 @@ struct LoginView: View {
                         .padding(.bottom, 20)
                         
                         PrimaryButton(text: "Sign in", color: .accent) {
-                            
+//                            viewModel.isLoginLoading = true
+                            navigateToCreateAccount.toggle()
                         }
                         .padding(.bottom, 20)
+                        .navigationDestination(isPresented: $navigateToCreateAccount) {
+                            SignUpFlowView(content: CreateAccountView(vm: viewModel))
+                        }
                         
                         OrSectionDivider()
                         
@@ -78,6 +83,7 @@ struct LoginView: View {
 
 #Preview {
     LoginView(
-        switchToLogin: .constant(false)
+        switchToLogin: .constant(false),
+        viewModel: AuthenticationViewModel()
     )
 }

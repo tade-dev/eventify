@@ -22,4 +22,5 @@ struct Colors{
     let charcoalBlack = Color("CharcoalBlack")
     let facebookBlue = Color("FacebookBlue")
     let neutral6 = Color("Neutral6")
+    let altPrimary = Color("AltPrimary")
 }
