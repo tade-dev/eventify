@@ -16,8 +16,9 @@ struct StepperProgress: View {
         HStack {
             ForEach(0..<length, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(currentIndex == index ? .accent : .colors.neutral4)
+                    .fill(currentIndex >= index ? .accent : .colors.neutral4)
                     .frame(height: 5)
+                    .animation(.easeInOut, value: currentIndex)
             }
         }
     }

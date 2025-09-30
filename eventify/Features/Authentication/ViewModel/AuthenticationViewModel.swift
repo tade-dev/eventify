@@ -18,5 +18,10 @@ class AuthenticationViewModel: ObservableObject {
     @Published var agreedToTerms: Bool = false
     @Published var isLoginLoading = false
     @Published var isSignUpLoading = false
+    @Published var otpCode = ""
+    @Published var searchLocationText = ""
+    
+    @Published var selectedSignUpViewIndex = 0
+    
     
 }

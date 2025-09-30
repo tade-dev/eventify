@@ -23,4 +23,6 @@ struct Colors{
     let facebookBlue = Color("FacebookBlue")
     let neutral6 = Color("Neutral6")
     let altPrimary = Color("AltPrimary")
+    let accent1 = Color("Accent1")
+    let neutral7 = Color("Neutral7")
 }

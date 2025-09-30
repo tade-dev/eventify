@@ -31,10 +31,10 @@ struct AuthIntroView: View {
                 SignUpLoginView(switchToLogin: $switchToLogin)
                     .opacity(switchToLogin ? 0 : 1)
                     .animation(.easeInOut(duration: 0.5), value: switchToLogin)
+                    .environmentObject(AuthenticationViewModel())
                 
                 LoginView(
                     switchToLogin: $switchToLogin,
-                    viewModel: viewModel
                 )
                     .padding(.horizontal, 20)
                     .padding(.top, 30)
@@ -48,6 +48,7 @@ struct AuthIntroView: View {
                     .offset(x: 0, y: switchToLogin ? 0 : UIScreen.main.bounds.height)
                     .transition(.asymmetric(insertion: .move(edge: .bottom).animation(.bouncy), removal: .move(edge: .bottom).animation(.bouncy)).animation(.bouncy(duration: 0.8).delay(0.6)))
                     .animation(.bouncy(duration: 0.8).delay(0.6), value: switchToLogin)
+                    .environmentObject(AuthenticationViewModel())
 
             }
         }

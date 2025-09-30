@@ -10,6 +10,8 @@ import SwiftUI
 struct SignUpLoginView: View {
     
     @Binding var switchToLogin: Bool
+    @State var navigateToCreateAccount: Bool = false
+    @EnvironmentObject private var vm: AuthenticationViewModel
     
     var body: some View {
         ZStack {
@@ -45,9 +47,13 @@ struct SignUpLoginView: View {
                 .padding(.bottom, 15)
             
             PrimaryButton(text: "Sign up for Eventify", color: .colors.accentColor) {
-                
+                navigateToCreateAccount = true
             }
             .padding(.bottom, 5)
+            .navigationDestination(isPresented: $navigateToCreateAccount) {
+                SignUpFlowView()
+                    .environmentObject(vm)
+            }
             
             Button {
                 switchToLogin = true
@@ -91,6 +97,8 @@ struct SignUpLoginView: View {
 
 #Preview {
     SignUpLoginView(
-        switchToLogin: .constant(false)
+        switchToLogin: .constant(false),
+        navigateToCreateAccount: false
     )
+    .environmentObject(AuthenticationViewModel())
 }

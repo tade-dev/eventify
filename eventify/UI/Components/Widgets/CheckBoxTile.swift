@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  CheckBoxTile.swift
 //  eventify
 //
 //  Created by BSTAR on 24/09/2025.
