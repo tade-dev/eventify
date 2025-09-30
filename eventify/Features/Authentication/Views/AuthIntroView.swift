@@ -58,7 +58,7 @@ struct AuthIntroView: View {
             }
         }, child: {
             ForgotPassword(showForgotPassword: $showForgotPassword)
-        }, isActive: $showForgotPassword, height: 350)
+        }, isActive: $showForgotPassword, height: 300)
     }
     
     var backgroundImage: some View {

@@ -8,11 +8,55 @@
 import SwiftUI
 
 struct ResetPassword: View {
+    
+    @EnvironmentObject private var vm: AuthenticationViewModel
+    @State private var navigateToSuccess = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(showsIndicators: false) {
+
+            VStack(alignment: .leading) {
+                Text("New Password")
+                    .font(.openSansBold(size: 20))
+                    .foregroundStyle(.textBlack)
+                
+                Text("Set your new password")
+                    .font(.openSansRegular(size: 14))
+                    .foregroundStyle(.neutral6)
+                    .padding(.bottom, 20)
+                
+                InputField(
+                    text: $vm.password,
+                    hintText: "New Password",
+                    isPasword: true,
+                )
+                .padding(.bottom, 10)
+                
+                InputField(
+                    text: $vm.password,
+                    hintText: "Re-enter Password",
+                    isPasword: true,
+                )
+                
+            }
+            .padding(.horizontal, 20)
+                
+        }
+        .safeAreaInset(edge: .bottom, content: {
+            PrimaryButton(text: "Continue", color: .accent) {
+                dismissKeyboardWhenTappedAround()
+                navigateToSuccess = true
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 15)
+            .navigationDestination(isPresented: $navigateToSuccess) {
+                PasswordResetSuccess()
+            }
+        })
     }
 }
 
 #Preview {
     ResetPassword()
+        .environmentObject(AuthenticationViewModel())
 }

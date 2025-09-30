@@ -36,6 +36,7 @@ struct PasswordResetSuccess: View {
             }
             
         }
+        .navigationBarBackButtonHidden()
         .padding(.horizontal, 20)
     }
 }

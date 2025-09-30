@@ -16,43 +16,39 @@ struct BottomSheet<Content: View, Child: View>: View {
     var height: CGFloat = 300
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            content()
+        
+            ZStack(content: {
+                content()
+                Color.altPrimary.opacity(isActive ? 0.7 : 0)
+                    .ignoresSafeArea()
+                    .animation(.easeInOut, value: isActive)
+            })
+            .overlay(alignment: .bottom) {
                 
-            if isActive {
-                ZStack {
-                    
-                    backgroundColor.opacity(0.7)
-                        .animation(.easeInOut, value: isActive)
-                        .ignoresSafeArea()
-                    
+                if isActive {
+                    child()
+                        .padding(.horizontal, 15)
+                        .padding(.top, 20)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: height)
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.white)
+                                .ignoresSafeArea()
+                        }
+                        .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
+                        .animation(.spring())
                 }
-                .ignoresSafeArea()
+
             }
-            
-        }
-        .safeAreaInset(edge: .bottom) {
-            if isActive {
-                child()
-                    .padding(.horizontal, 15)
-                    .padding(.top, 20)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: height)
-                    .background(.white)
-                    .cornerRadius(20)
-                    .frame(maxHeight: .infinity, alignment: .bottom)
-                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
-                    .animation(.spring())
-            }
-        }
     }
 }
 
 #Preview {
     BottomSheet(content: {
-        EmptyView()
+        Color.red
+            .ignoresSafeArea()
     }, child: {
-        Text("Active")
+        Text("Actvie")
     }, isActive: .constant(true))
 }

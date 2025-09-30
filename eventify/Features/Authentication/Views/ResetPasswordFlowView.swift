@@ -35,13 +35,6 @@ struct ResetPasswordFlowView: View {
                 )
                 .padding(.horizontal, 20)
                 
-                StepperProgress(
-                    length: 4,
-                    currentIndex: vm.selectedResetPasswordViewIndex
-                )
-                .padding(.horizontal, 20)
-                .padding(.bottom, 10)
-                
                 views[vm.selectedResetPasswordViewIndex]
                 
             }
@@ -63,4 +56,5 @@ struct ResetPasswordFlowView: View {
             AnyView(Text(""))
         ]
     )
+    .environmentObject(AuthenticationViewModel())
 }

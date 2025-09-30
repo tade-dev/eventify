@@ -14,23 +14,22 @@ struct ForgotPassword: View {
     @State var navigateToResetPassword: Bool = false
     
     var body: some View {
-        VStack {
-            
-            HStack {
-                Text("Forgot Password?")
-                    .font(.openSansSemiBold(size: 18))
-                    .foregroundStyle(.accent)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading) {
                 
-                Spacer()
-                
-                Image("cancel-circle")
-                    .onTapGesture {
-                        showForgotPassword = false
-                    }
-            }
-            .padding(.bottom, 10)
-            
-            ScrollView {
+                HStack {
+                    Text("Forgot Password?")
+                        .font(.openSansSemiBold(size: 18))
+                        .foregroundStyle(.accent)
+                    
+                    Spacer()
+                    
+                    Image("cancel-circle")
+                        .onTapGesture {
+                            showForgotPassword = false
+                        }
+                }
+                .padding(.bottom, 10)
                 
                 Text("Please provide your email address to initiate the password reset process.")
                     .font(.openSansMedium(size: 14))
@@ -61,7 +60,7 @@ struct ForgotPassword: View {
                 .padding(.bottom, 20)
                 
                 PrimaryButton(text: "Send OTP", color: .accent) {
-                    
+                    navigateToResetPassword = true
                 }
                 .navigationDestination(isPresented: $navigateToResetPassword) {
                     ResetPasswordFlowView(views: [
