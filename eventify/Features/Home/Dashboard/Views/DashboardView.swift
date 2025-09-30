@@ -15,6 +15,7 @@ struct DashboardView: View {
         DashboardTabView(viewModel: viewModel) {
             viewModel.dashboardViews[viewModel.dashboardViewIndex]
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

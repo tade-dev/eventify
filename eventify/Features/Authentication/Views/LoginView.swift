@@ -12,6 +12,7 @@ struct LoginView: View {
     @Binding var switchToLogin: Bool
     @Binding var showForgotPassword: Bool
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    @State var navigateToDashboard: Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -54,9 +55,12 @@ struct LoginView: View {
                         .padding(.bottom, 20)
                         
                         PrimaryButton(text: "Sign in", color: .accent) {
-
+                            navigateToDashboard = true
                         }
                         .padding(.bottom, 20)
+                        .navigationDestination(isPresented: $navigateToDashboard) {
+                            DashboardView()
+                        }
 
                         OrSectionDivider()
                         
