@@ -51,8 +51,14 @@ struct SignUpLoginView: View {
             }
             .padding(.bottom, 5)
             .navigationDestination(isPresented: $navigateToCreateAccount) {
-                SignUpFlowView()
-                    .environmentObject(vm)
+                SignUpFlowView(
+                    views: [
+                        AnyView(CreateAccountView(vm: vm)),
+                        AnyView(CheckYourMailView(vm: vm)),
+                        AnyView(ChooseLocationView(vm: vm)),
+                        AnyView(YourInterestView(vm: vm)),
+                    ]
+                )
             }
             
             Button {

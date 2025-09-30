@@ -21,7 +21,7 @@ struct PrimaryButton: View {
     var body: some View {
         Button(action: onPressed) {
             Text(text)
-                .font(.openSans(.medium, size: fontSize))
+                .font(.openSans(.semiBold, size: fontSize))
                 .foregroundColor(textColor)
                 .frame(maxWidth: width ?? .infinity)
                 .frame(height: height)

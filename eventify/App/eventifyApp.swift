@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct eventifyApp: App {
+    
+    @StateObject var viewModel = AuthenticationViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
                 Color.white
                 
                 OnboardingView()
+                    .environmentObject(viewModel)
             }
         }
     }

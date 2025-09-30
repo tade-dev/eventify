@@ -50,7 +50,7 @@ struct LoadingOverlay<Content: View>: View {
 #Preview {
     LoadingOverlay() {
         LoginView(
-            switchToLogin: .constant(false))
+            switchToLogin: .constant(false),showForgotPassword: .constant(false))
     }
     .environmentObject(AuthenticationViewModel())
 }

@@ -22,6 +22,7 @@ class AuthenticationViewModel: ObservableObject {
     @Published var searchLocationText = ""
     
     @Published var selectedSignUpViewIndex = 0
+    @Published var selectedResetPasswordViewIndex = 0
     
     
 }

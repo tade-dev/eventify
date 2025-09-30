@@ -1,13 +1,13 @@
 //
-//  SignUpFlowView.swift
+//  ResetPasswordFlowView.swift
 //  eventify
 //
-//  Created by BSTAR on 24/09/2025.
+//  Created by BSTAR on 30/09/2025.
 //
 
 import SwiftUI
 
-struct SignUpFlowView: View {
+struct ResetPasswordFlowView: View {
     
     @EnvironmentObject private var vm: AuthenticationViewModel
     @Environment(\.dismiss) private var dismiss
@@ -24,25 +24,25 @@ struct SignUpFlowView: View {
                 
                 AppBar(
                     onBack: {
-                        if (vm.selectedSignUpViewIndex > 0) {
-                            vm.selectedSignUpViewIndex -= 1
+                        if (vm.selectedResetPasswordViewIndex > 0) {
+                            vm.selectedResetPasswordViewIndex -= 1
                         } else {
                             dismiss()
                         }
                         dismissKeyboardWhenTappedAround()
                     },
-                    text: getTitle(index: vm.selectedSignUpViewIndex),
+                    text: getTitle(index: vm.selectedResetPasswordViewIndex),
                 )
-                    .padding(.horizontal, 20)
+                .padding(.horizontal, 20)
                 
                 StepperProgress(
                     length: 4,
-                    currentIndex: vm.selectedSignUpViewIndex
+                    currentIndex: vm.selectedResetPasswordViewIndex
                 )
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
                 
-                views[vm.selectedSignUpViewIndex]
+                views[vm.selectedResetPasswordViewIndex]
                 
             }
         }
@@ -51,20 +51,16 @@ struct SignUpFlowView: View {
     
     func getTitle(index: Int) -> String {
         switch (index) {
-        case 0: return "Create an account"
-        case 1: return "Check your mail"
-        case 2: return "Choose Location"
-        default: return "Tell us your interests"
+        case 1: return "Reset Password"
+        default: return "Forgot Password"
         }
     }
-    
 }
 
 #Preview {
-    SignUpFlowView(
+    ResetPasswordFlowView(
         views: [
-            AnyView(Text("Hello, World!"))
+            AnyView(Text(""))
         ]
     )
-        .environmentObject(AuthenticationViewModel())
 }

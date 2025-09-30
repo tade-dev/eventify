@@ -10,48 +10,55 @@ import SwiftUI
 struct AuthIntroView: View {
     
     @State var switchToLogin: Bool = false
-    @StateObject var viewModel = AuthenticationViewModel()
+    @State var showForgotPassword: Bool = false
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
-        LoadingOverlay(isLoading: viewModel.isLoginLoading, text: "Signing you in, please wait...") {
-            ZStack(alignment: .bottom) {
-                backgroundImage
+        BottomSheet(content: {
+            LoadingOverlay(isLoading: viewModel.isLoginLoading, text: "Signing you in, please wait...") {
+                ZStack(alignment: .bottom) {
+                    backgroundImage
+                        .ignoresSafeArea()
+                    
+                    LinearGradient(
+                        stops: [
+                            .init(color: .colors.textBlack.opacity(0.5), location: 0.58),
+                            .init(color: .colors.textBlack, location: 1.0),
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
                     .ignoresSafeArea()
-                
-                LinearGradient(
-                    stops: [
-                        .init(color: .colors.textBlack.opacity(0.5), location: 0.58),
-                        .init(color: .colors.textBlack, location: 1.0),
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-                
-                SignUpLoginView(switchToLogin: $switchToLogin)
-                    .opacity(switchToLogin ? 0 : 1)
-                    .animation(.easeInOut(duration: 0.5), value: switchToLogin)
-                    .environmentObject(AuthenticationViewModel())
-                
-                LoginView(
-                    switchToLogin: $switchToLogin,
-                )
-                    .padding(.horizontal, 20)
-                    .padding(.top, 30)
-                    .background {
-                        RoundedRectangle(cornerRadius: 40)
-                            .fill(.white)
-                            .ignoresSafeArea()
+                    
+                    SignUpLoginView(switchToLogin: $switchToLogin)
+                        .opacity(switchToLogin ? 0 : 1)
+                        .animation(.easeInOut(duration: 0.5), value: switchToLogin)
+                    
+                    ZStack {
+                        if(switchToLogin) {
+                            LoginView(
+                                switchToLogin: $switchToLogin,
+                                showForgotPassword: $showForgotPassword
+                            )
+                            .padding(.horizontal, 20)
+                            .padding(.top, 30)
+                            .background {
+                                RoundedRectangle(cornerRadius: 40)
+                                    .fill(.white)
+                                    .ignoresSafeArea()
+                            }
+                            .frame(height: UIScreen.main.bounds.height * 0.8)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
+                            .animation(.spring())
+                        }
                     }
-                    .frame(height: UIScreen.main.bounds.height * 0.8)
-                    .frame(maxHeight: .infinity, alignment: .bottom)
-                    .offset(x: 0, y: switchToLogin ? 0 : UIScreen.main.bounds.height)
-                    .transition(.asymmetric(insertion: .move(edge: .bottom).animation(.bouncy), removal: .move(edge: .bottom).animation(.bouncy)).animation(.bouncy(duration: 0.8).delay(0.6)))
-                    .animation(.bouncy(duration: 0.8).delay(0.6), value: switchToLogin)
-                    .environmentObject(AuthenticationViewModel())
-
+                }
+                
             }
-        }
+        }, child: {
+            ForgotPassword(showForgotPassword: $showForgotPassword)
+        }, isActive: $showForgotPassword, height: 350)
     }
     
     var backgroundImage: some View {
@@ -63,4 +70,5 @@ struct AuthIntroView: View {
 
 #Preview {
     AuthIntroView()
+        .environmentObject(AuthenticationViewModel())
 }

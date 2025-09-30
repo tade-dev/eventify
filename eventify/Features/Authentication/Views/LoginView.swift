@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @Binding var switchToLogin: Bool
+    @Binding var showForgotPassword: Bool
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
@@ -46,6 +47,9 @@ struct LoginView: View {
                             Text("Forgot Password?")
                                 .font(.openSansBold(size: 12))
                                 .foregroundStyle(Color.colors.accentColor)
+                                .onTapGesture {
+                                    showForgotPassword = true
+                                }
                         }
                         .padding(.bottom, 20)
                         
@@ -79,6 +83,7 @@ struct LoginView: View {
 #Preview {
     LoginView(
         switchToLogin: .constant(false),
+        showForgotPassword: .constant(false)
     )
     .environmentObject(AuthenticationViewModel())
 }
