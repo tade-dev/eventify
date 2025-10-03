@@ -26,4 +26,6 @@ struct Colors{
     let accent1 = Color("Accent1")
     let neutral7 = Color("Neutral7")
     let neutral3 =  Color("Neutral3")
+    let neutral1 = Color("Neutral1")
+    let neutral8 = Color("Neutral8")
 }

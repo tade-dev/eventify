@@ -48,14 +48,14 @@ struct OnboardingView: View {
                     Text(vm.onboardingViews[vm.currentIndex].title)
                         .font(.openSansBold(size: 32))
                         .foregroundColor(.white)
-                        .scaleEffect(isAnimating ? 1 : 0)
-                        .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
+//                        .scaleEffect(isAnimating ? 1 : 0)
+//                        .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
                     
                     Text(vm.onboardingViews[vm.currentIndex].description)
                         .font(.openSansRegular(size: 16))
                         .foregroundColor(.white)
-                        .offset(x: isAnimating ? 0 : -500, y: 0)
-                        .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
+//                        .offset(x: isAnimating ? 0 : -500, y: 0)
+//                        .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
                     
                     CustomPageIndicator(
                         length: vm.onboardingViews.count,
@@ -63,8 +63,8 @@ struct OnboardingView: View {
                     )
                     .padding(.top, 15)
                     .padding(.bottom, 40)
-                    .offset(x: isAnimating ? 0 : -500, y: isAnimating ? 0 : 80)
-                    .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
+//                    .offset(x: isAnimating ? 0 : -500, y: isAnimating ? 0 : 80)
+//                    .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
                     
                     PrimaryButton(text: "Next", color: .colors.accentColor) {
                         if(vm.currentIndex == 2){
@@ -73,8 +73,8 @@ struct OnboardingView: View {
                             vm.currentIndex += 1
                         }
                     }
-                    .offset(x: isAnimating ? 0 : -500, y: isAnimating ? 0 : 100)
-                    .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
+//                    .offset(x: isAnimating ? 0 : -500, y: isAnimating ? 0 : 100)
+//                    .animation(.bouncy(duration: 0.3).delay(0.8), value: isAnimating)
                     .navigationDestination(isPresented: $navigateToNext) {
                         AuthIntroView()
                     }

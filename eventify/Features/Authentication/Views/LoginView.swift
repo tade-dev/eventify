@@ -39,7 +39,7 @@ struct LoginView: View {
                         InputField(text: $viewModel.emailAddress, hintText: "Email")
                             .padding(.bottom, 10)
                         
-                        InputField(text: $viewModel.password, hintText: "Password", isPasword: true)
+                        InputField(text: $viewModel.password, hintText: "Password", isPassword: true)
                             .padding(.bottom, 7)
                         
                         HStack {

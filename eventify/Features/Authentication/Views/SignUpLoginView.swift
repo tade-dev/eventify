@@ -71,11 +71,13 @@ struct SignUpLoginView: View {
                     .frame(height: 50)
             }
             .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(.white.opacity(0.1))
-                    .blur(radius: 10)
-                    .border(.white)
+                .ultraThinMaterial
             )
+            .cornerRadius(5)
+            .overlay {
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.white)
+            }
             .padding(.bottom, 10)
 
             

@@ -28,14 +28,14 @@ struct ResetPassword: View {
                 InputField(
                     text: $vm.password,
                     hintText: "New Password",
-                    isPasword: true,
+                    isPassword: true,
                 )
                 .padding(.bottom, 10)
                 
                 InputField(
                     text: $vm.password,
                     hintText: "Re-enter Password",
-                    isPasword: true,
+                    isPassword: true,
                 )
                 
             }

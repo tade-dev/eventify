@@ -10,10 +10,12 @@ import SwiftUI
 struct InputField: View {
     
     @Binding var text: String
+    
+    // MARK: - Configurable Properties
     var hintText: String = "Enter value"
     var hintFont: Font = .openSansRegular(size: 16)
     var hintColor: Color = .colors.neutral6
-    var isPasword: Bool = false
+    var isPassword: Bool = false
     @FocusState private var isFocused: Bool
     var keyboardType: UIKeyboardType = .default
     var onSubmit: () -> Void = { }
@@ -23,22 +25,23 @@ struct InputField: View {
     var fillColor: Color = .clear
     var prefixIcon: Image? = nil
     var borderRadius: CGFloat = 4
+    var height: CGFloat? = nil   // Optional height
     
+    // MARK: - Body
     var body: some View {
-
         HStack {
             
             if let prefixIcon {
                 prefixIcon
             }
             
-            Group(content: {
-                if(isPasword) {
+            Group {
+                if isPassword {
                     SecureField("", text: $text)
-                }else {
+                } else {
                     TextField("", text: $text)
                 }
-            })
+            }
             .focused($isFocused)
             .font(.openSansRegular(size: 16))
             .foregroundStyle(.textBlack)
@@ -46,37 +49,35 @@ struct InputField: View {
             .textCase(.lowercase)
             .textInputAutocapitalization(.never)
             .keyboardType(keyboardType)
-            .onSubmit {
-                onSubmit()
-            }
+            .onSubmit { onSubmit() }
             .disabled(!enabled)
-            .padding(.vertical, 15)
             .overlay(alignment: .leading) {
-                if(!isFocused && text.isEmpty){
+                if !isFocused && text.isEmpty {
                     Text(hintText)
                         .foregroundStyle(hintColor)
                         .font(hintFont)
                 }
             }
             
-            if isPasword {
+            if isPassword {
                 Image("visibility_off")
             }
         }
         .padding(.horizontal, 15)
-        .background(
-            isFilled ? fillColor : Color.clear
-        )
+        .frame(height: height) // ✅ Apply optional height
+        .background(isFilled ? fillColor : Color.clear)
+        .cornerRadius(borderRadius)
         .overlay(
             RoundedRectangle(cornerRadius: borderRadius)
-                .stroke(borderColor != nil ? borderColor! : (isFocused ? .accent : .neutral4))
+                .stroke(borderColor ?? (isFocused ? .accent : .neutral4))
         )
-        
     }
 }
 
 #Preview {
-    InputField(
-        text: .constant("")
-    )
+    VStack(spacing: 20) {
+        InputField(text: .constant(""), hintText: "Default Height")
+        InputField(text: .constant(""), hintText: "Custom Height 60", height: 60)
+    }
+    .padding()
 }

@@ -26,10 +26,10 @@ struct CreateAccountView: View {
                 InputField(text: $vm.emailAddress, hintText: "Email")
                     .padding(.bottom, 10)
                 
-                InputField(text: $vm.password, hintText: "Password", isPasword: true)
+                InputField(text: $vm.password, hintText: "Password", isPassword: true)
                     .padding(.bottom, 10)
                 
-                InputField(text: $vm.confirmPassword, hintText: "Re-enter Password", isPasword: true)
+                InputField(text: $vm.confirmPassword, hintText: "Re-enter Password", isPassword: true)
                     .padding(.bottom, 15)
                 
                 CheckBoxTile(
