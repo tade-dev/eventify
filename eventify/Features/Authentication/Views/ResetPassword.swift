@@ -29,6 +29,7 @@ struct ResetPassword: View {
                     text: $vm.password,
                     hintText: "New Password",
                     isPassword: true,
+                    height: 48
                 )
                 .padding(.bottom, 10)
                 
@@ -36,6 +37,7 @@ struct ResetPassword: View {
                     text: $vm.password,
                     hintText: "Re-enter Password",
                     isPassword: true,
+                    height: 48
                 )
                 
             }

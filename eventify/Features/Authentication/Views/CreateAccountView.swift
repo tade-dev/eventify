@@ -20,16 +20,16 @@ struct CreateAccountView: View {
                     .foregroundStyle(Color.colors.neutral6)
                     .padding(.bottom, 15)
                 
-                InputField(text: $vm.fullName, hintText: "Full Name")
+                InputField(text: $vm.fullName, hintText: "Full Name", height: 48)
                     .padding(.bottom, 10)
                 
-                InputField(text: $vm.emailAddress, hintText: "Email")
+                InputField(text: $vm.emailAddress, hintText: "Email", height: 48)
                     .padding(.bottom, 10)
                 
-                InputField(text: $vm.password, hintText: "Password", isPassword: true)
+                InputField(text: $vm.password, hintText: "Password", isPassword: true, height: 48)
                     .padding(.bottom, 10)
                 
-                InputField(text: $vm.confirmPassword, hintText: "Re-enter Password", isPassword: true)
+                InputField(text: $vm.confirmPassword, hintText: "Re-enter Password", isPassword: true, height: 48)
                     .padding(.bottom, 15)
                 
                 CheckBoxTile(

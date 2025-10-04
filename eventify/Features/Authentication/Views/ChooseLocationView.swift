@@ -28,6 +28,7 @@ struct ChooseLocationView: View {
                     fillColor: .accent1,
                     prefixIcon: Image("search_icon"),
                     borderRadius: 8,
+                    height: 50
                 )
                 .padding(.bottom, 20)
                 

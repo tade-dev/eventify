@@ -81,6 +81,7 @@ struct YourEventsView: View {
             }
             
         }
+        .frame(maxWidth: 275)
         .padding()
         .background(
             Image(image)
@@ -88,7 +89,6 @@ struct YourEventsView: View {
                 .scaledToFill()
         )
         .cornerRadius(8)
-        .padding(.trailing, 10)
     }
 }
 

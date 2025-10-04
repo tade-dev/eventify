@@ -36,10 +36,10 @@ struct LoginView: View {
                             .foregroundStyle(Color.colors.neutral6)
                             .padding(.bottom, 15)
                         
-                        InputField(text: $viewModel.emailAddress, hintText: "Email")
+                        InputField(text: $viewModel.emailAddress, hintText: "Email", height: 48)
                             .padding(.bottom, 10)
                         
-                        InputField(text: $viewModel.password, hintText: "Password", isPassword: true)
+                        InputField(text: $viewModel.password, hintText: "Password", isPassword: true, height: 48)
                             .padding(.bottom, 7)
                         
                         HStack {

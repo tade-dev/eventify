@@ -198,9 +198,13 @@ struct HomeContentView: View {
     
     var spacerLength: CGFloat? = 0
     @ObservedObject var vm: EventViewModel
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 15),
+        GridItem(.flexible(), spacing: 15),
+    ]
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack {
                 Spacer(minLength: spacerLength)
                 Rectangle()
@@ -223,17 +227,38 @@ struct HomeContentView: View {
                 
                 // Trending Section
                 SectionView(content: {
-                    Text("Active")
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                    }
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
                 }, title: "Trending Vendors", viewText: "See All")
                 
                 // Events Near You Section
                 SectionView(content: {
-                    Text("Active")
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                    }
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
                 }, title: "Events near you", viewText: "See All")
                 
                 // Recommended based on interests Section
                 SectionView(content: {
-                    Text("Active")
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                        ItemWidget(image: "", title: "", location: "", distance: 0.0, rating: 0.0, price: 0.0)
+                    }
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
                 }, title: "Recommended based on interests", viewText: "See All")
                 
             }

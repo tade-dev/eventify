@@ -39,6 +39,7 @@ struct ForgotPassword: View {
                 InputField(
                     text: $vm.emailAddress,
                     hintText: "Email address",
+                    height: 48
                 )
                 .padding(.bottom, 10)
                 
