@@ -28,4 +28,5 @@ struct Colors{
     let neutral3 =  Color("Neutral3")
     let neutral1 = Color("Neutral1")
     let neutral8 = Color("Neutral8")
+    let background = Color("Background")
 }

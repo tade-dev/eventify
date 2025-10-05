@@ -12,7 +12,7 @@ struct HomeView: View {
     @State var text: String = ""
     @State var proxyHeight: CGFloat? = nil
     
-    @StateObject var vm = EventViewModel()
+    @EnvironmentObject var vm: EventViewModel
     
     var body: some View {
         
@@ -305,4 +305,5 @@ struct SectionView<Content: View>: View {
 
 #Preview {
     HomeView()
+        .environmentObject(EventViewModel())
 }

@@ -9,13 +9,16 @@ import SwiftUI
 
 struct DashboardView: View {
     
-    @StateObject private var viewModel = DashboardViewModel()
+    @StateObject private var dashboardViewModel = DashboardViewModel()
+    @StateObject private var eventViewModel = EventViewModel()
     
     var body: some View {
-        DashboardTabView(viewModel: viewModel) {
-            viewModel.dashboardViews[viewModel.dashboardViewIndex]
+        DashboardTabView(viewModel: dashboardViewModel) {
+            dashboardViewModel.dashboardViews[dashboardViewModel.dashboardViewIndex]
         }
         .navigationBarBackButtonHidden()
+        .environmentObject(dashboardViewModel)
+        .environmentObject(eventViewModel)
     }
 }
 

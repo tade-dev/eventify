@@ -15,18 +15,29 @@ struct PrimaryButton: View {
     var isDisabled: Bool = false
     var height: CGFloat = 50
     var width: CGFloat? = nil
+    var hasWidth: Bool = true
+    var padding: CGFloat?
     var fontSize: CGFloat = 16
     var textColor: Color = .white
+    var icon: AnyView?
     
     var body: some View {
         Button(action: onPressed) {
-            Text(text)
-                .font(.openSans(.semiBold, size: fontSize))
-                .foregroundColor(textColor)
-                .frame(maxWidth: width ?? .infinity)
-                .frame(height: height)
-                .background(color)
-                .cornerRadius(5)
+            HStack {
+                
+                if icon != nil {
+                    icon
+                }
+                
+                Text(text)
+            }
+            .font(.openSans(.semiBold, size: fontSize))
+            .foregroundColor(textColor)
+            .padding(.horizontal, padding ?? 0)
+            .frame(maxWidth: hasWidth ? (width ?? .infinity) : nil)
+            .frame(height: height)
+            .background(color)
+            .cornerRadius(5)
         }
     }
 }
