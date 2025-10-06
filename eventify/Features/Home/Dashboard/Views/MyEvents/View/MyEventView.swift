@@ -10,6 +10,8 @@ import SwiftUI
 struct MyEventView: View {
     
     @EnvironmentObject private var vm: EventViewModel
+    @State private var events: [Event]?
+    @State private var selectedTitle: String?
     
     var body: some View {
         
@@ -39,12 +41,26 @@ struct MyEventView: View {
                         
                         VStack(spacing: 10) {
                             MyEventsTile(title: "Active Events", subtitle: "2 Upcoming Events today", icon: "time") {
+                                selectedTitle = "Active Events"
+                                events = vm.myEvents.filter({ event in
+                                    event.eventType == .active
+                                })
                                 
                             }
+         
                             MyEventsTile(title: "Draft Events", subtitle: "3 drafts saved", icon: "license") {
-                                
+                                selectedTitle = "Draft Events"
+                                events = vm.myEvents.filter({ event in
+                                    event.eventType == .drafts
+                                })
+                               
                             }
+              
                             MyEventsTile(title: "Past Events", subtitle: "View event history", icon: "calendar") {
+                                selectedTitle = "Past Events"
+                                events = vm.myEvents.filter({ event in
+                                    event.eventType == .past
+                                })
                                 
                             }
                         }
@@ -57,7 +73,10 @@ struct MyEventView: View {
                         
                         VStack(spacing: 10) {
                             MyEventsTile(title: "Upcoming Events", subtitle: "4 events to attend", icon: "calendar") {
-                                
+                                selectedTitle = "Upcoming Events"
+                                events = vm.myEvents.filter({ event in
+                                    event.eventType == .upcoming
+                                })
                             }
                             MyEventsTile(title: "My Tickets", subtitle: "View past and current tickets", icon: "ticket") {
                                 
@@ -68,13 +87,15 @@ struct MyEventView: View {
                         }
                         
                     }
+                    .navigationDestination(item: $events, destination: { event in
+                        EventsListView(title: selectedTitle ?? "Upcoming Title", events: event)
+                    })
                     .padding(.horizontal, 20)
                 }
                 
             }
             
         }
-        
     }
 }
 

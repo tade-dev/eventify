@@ -40,6 +40,7 @@ struct AppBar: View {
             }
             
         }
+        .padding(.horizontal, 20)
         .padding(.bottom, 10)
         .background(
             backgroundColor ?? Color.clear

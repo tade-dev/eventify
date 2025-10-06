@@ -218,7 +218,7 @@ struct HomeContentView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(vm.events, id: \.self) { event in
-                                YourEventsView(image: event.image, title: event.text, population: event.population)
+                                YourEventsView(image: event.image ?? "", title: event.text, population: event.population ?? "")
                             }
                         }
                         .padding(.leading, 20)
